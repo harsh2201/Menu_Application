@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "965730900034",
+    "firebase_url": "https://fidulis-3531b.firebaseio.com",
+    "project_id": "fidulis-3531b",
+    "storage_bucket": "fidulis-3531b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965730900034:android:8e2e6a674e34852e",
+        "android_client_info": {
+          "package_name": "com.hbteam.menuapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965730900034-rau84n746ut76obotetf8p8o5hoe0tn8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hbteam.menuapplication",
+            "certificate_hash": "19aec8bb83494ab443bb520180e7f9e26745fbfb"
+          }
+        },
+        {
+          "client_id": "965730900034-n3qvgd1pk3o20ug7btmcu1lu86rlr3qc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJtCQ-a6yIAWG8P0rv8PVc-p6WZSM-F14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965730900034-n3qvgd1pk3o20ug7btmcu1lu86rlr3qc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
