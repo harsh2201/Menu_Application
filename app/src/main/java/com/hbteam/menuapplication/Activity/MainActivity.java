@@ -29,11 +29,11 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private ItemsAdapter adapter;
+    public RecyclerView recyclerView;
+    public ItemsAdapter adapter;
     List<ItemClass> facultyList;
-    private Intent intent;
-    private android.support.v7.widget.SearchView searchview;
+    public Intent intent;
+    public android.support.v7.widget.SearchView searchview;
 
 
     //FireBase Content
@@ -69,13 +69,175 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Removed as it was working only in debuggin mode.
-        //recyclerView.setHasFixedSize(true);
+        
 
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+       recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         //Loading the data from firebase
+//        demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                int length= (int) dataSnapshot.getChildrenCount();
+//                for(int i=1;i<=length;i++){
+//                    String name = dataSnapshot.child(""+i).child("Drug Name").getValue(String.class);
+//                    Integer mrp = dataSnapshot.child(""+i).child("MRP").getValue(Integer.class);
+//                    String packing = dataSnapshot.child(""+i).child("Packing").getValue(String.class);
+//                    Integer quantity = dataSnapshot.child(""+i).child("Shipper Quantity").getValue(Integer.class);
+//                    //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
+//
+//
+//
+//                    new_name[new_counter]=name;
+//                    new_mrp[new_counter]=mrp;
+//                    new_packing[new_counter]=packing;
+//                    new_quantity[new_counter]=quantity;
+//
+//
+//                    /*facultyList.add(
+//                            new ItemClass(
+//                                    R.drawable.sample,
+//                                    name,
+//                                    packing
+//                            )
+//                    );*/
+//
+//                    new_counter++;
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//
+//
+//
+//        });
+//
+//
+//        old_demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                int length= (int) dataSnapshot.getChildrenCount();
+//                for(int i=1;i<=length;i++){
+//                    String name = dataSnapshot.child(""+i).child("Drug Name").getValue(String.class);
+//                    Integer mrp = dataSnapshot.child(""+i).child("MRP").getValue(Integer.class);
+//                    String packing = dataSnapshot.child(""+i).child("Packing").getValue(String.class);
+//                    Integer quantity = dataSnapshot.child(""+i).child("Shipper Quantity").getValue(Integer.class);
+//                    //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
+//                    old_name[old_counter]=name;
+//                    old_mrp[old_counter]=mrp;
+//                    old_packing[old_counter]=packing;
+//                    old_quantity[old_counter]=quantity;
+//
+//                    /*facultyList.add(
+//                            new ItemClass(
+//                                    R.drawable.sample,
+//                                    name,
+//                                    packing
+//                            )
+//                    );*/
+//
+//                    old_counter++;
+//
+//
+//
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//
+//
+//        });
+//
+//
+        Context context=this;
+        get_newproducts(context);
+        get_oldproducts(context);
+        //Adding Data to th list:
+        //addList();
+
+//        Context con=recyclerView.getContext();
+//        LayoutAnimationController controller= AnimationUtils.loadLayoutAnimation(con,R.anim.lay_fall_down);
+//        adapter=new ItemsAdapter(this,facultyList);
+//
+////        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(adapter);
+//        AlphaInAnimationAdapter alphaAdapter2 = new AlphaInAnimationAdapter(adapter);
+//        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(alphaAdapter2);
+//        alphaAdapter.setDuration(1000);
+//        alphaAdapter.setInterpolator(new OvershootInterpolator());
+//        alphaAdapter.setFirstOnly(false);
+//        recyclerView.setAdapter(alphaAdapter);
+////        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutAnimation(controller);
+//        recyclerView.scheduleLayoutAnimation();
+//        onClickList();
+    }
+
+    public void addList(){
+        for(int i=0;i<new_counter;i++){
+            facultyList.add(
+                    new ItemClass(
+                            R.drawable.sample,
+                            new_name[i],
+                            new_packing[i]
+                    )
+            );
+        }
+
+        for(int i=0;i<old_counter;i++){
+            facultyList.add(
+                    new ItemClass(
+                            R.drawable.sample,
+                            old_name[i],
+                            old_packing[i]
+                    )
+            );
+        }
+
+
+        Context con=recyclerView.getContext();
+        LayoutAnimationController controller= AnimationUtils.loadLayoutAnimation(con,R.anim.lay_fall_down);
+        adapter=new ItemsAdapter(this,facultyList);
+
+//        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(adapter);
+        AlphaInAnimationAdapter alphaAdapter2 = new AlphaInAnimationAdapter(adapter);
+        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(alphaAdapter2);
+        alphaAdapter.setDuration(1000);
+        alphaAdapter.setInterpolator(new OvershootInterpolator());
+        alphaAdapter.setFirstOnly(false);
+        recyclerView.setAdapter(alphaAdapter);
+//        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.scheduleLayoutAnimation();
+        onClickList();
+
+    }
+
+   
+    private void onClickList(){
+//        final ItemsAdapter adaptNew=(ItemsAdapter)recyclerView.getAdapter();
+//        assert adaptNew != null;
+        adapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                facultyList=adapter.currentList();
+                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void get_newproducts(Context context){
+
         demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,17 +257,18 @@ public class MainActivity extends AppCompatActivity {
                     new_quantity[new_counter]=quantity;
 
 
-                    facultyList.add(
+                    /*facultyList.add(
                             new ItemClass(
                                     R.drawable.sample,
                                     name,
                                     packing
                             )
-                    );
+                    );*/
 
                     new_counter++;
 
                 }
+                addList();
 
 
             }
@@ -119,6 +282,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+
+    }
+
+    public void get_oldproducts(final Context context){
 
         old_demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -135,13 +303,13 @@ public class MainActivity extends AppCompatActivity {
                     old_packing[old_counter]=packing;
                     old_quantity[old_counter]=quantity;
 
-                    facultyList.add(
+                    /*facultyList.add(
                             new ItemClass(
                                     R.drawable.sample,
                                     name,
                                     packing
                             )
-                    );
+                    );*/
 
                     old_counter++;
 
@@ -149,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+               // addList();
 
             }
 
@@ -156,43 +325,13 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
 
-            
-            
+
+
         });
 
 
 
-        //Adding Data to th list:
-       // addList();
 
-        Context con=recyclerView.getContext();
-        LayoutAnimationController controller= AnimationUtils.loadLayoutAnimation(con,R.anim.lay_fall_down);
-        adapter=new ItemsAdapter(this,facultyList);
-
-//        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(adapter);
-        AlphaInAnimationAdapter alphaAdapter2 = new AlphaInAnimationAdapter(adapter);
-        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(alphaAdapter2);
-        alphaAdapter.setDuration(1000);
-        alphaAdapter.setInterpolator(new OvershootInterpolator());
-        alphaAdapter.setFirstOnly(false);
-        recyclerView.setAdapter(alphaAdapter);
-//        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutAnimation(controller);
-        recyclerView.scheduleLayoutAnimation();
-        onClickList();
-    }
-
-   
-    private void onClickList(){
-//        final ItemsAdapter adaptNew=(ItemsAdapter)recyclerView.getAdapter();
-//        assert adaptNew != null;
-        adapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                facultyList=adapter.currentList();
-                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gName(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }
