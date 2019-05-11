@@ -37,7 +37,13 @@ dependencies {
     implementation 'jp.wasabeef:recyclerview-animators:2.3.0'
     //easing animations
     implementation 'com.daimajia.easing:library:2.1@aar'
+    //AutoSLider
+
+    //CirclePageIndiacator
+    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
+
 }
+
 
 
 
