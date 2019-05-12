@@ -131,11 +131,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.aboutus:
                 Intent i = new Intent(MainActivity.this,About_Us.class);
                 startActivity(i);
+                break;
 
             case R.id.locate:
                 String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 23.6182861, 72.9610794);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
