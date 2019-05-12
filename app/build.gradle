@@ -42,7 +42,12 @@ dependencies {
     //CirclePageIndiacator
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
 
+    //Layout
+    compile 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
+
+
 }
+
 
 
 
