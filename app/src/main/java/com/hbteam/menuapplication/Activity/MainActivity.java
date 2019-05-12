@@ -62,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
     //Arrays for the data : retreived from firebase
 
     String new_name[]=new String[500];
+    String new_image[]=new String[500];
     String new_packing[]=new String[500];
     Integer new_mrp[]=new Integer[500];
     Integer new_quantity[]=new Integer[500];
 
 
     String old_name[]=new String[500];
+    String old_image[]=new String[500];
     String old_packing[]=new String[500];
     Integer old_mrp[]=new Integer[500];
     Integer old_quantity[]=new Integer[500];
@@ -127,9 +129,10 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<new_counter;i++){
             facultyList.add(
                     new ItemClass(
-                            R.drawable.sample,
+                            new_image[i],
                             new_name[i],
                             new_packing[i]
+
                     )
             );
         }
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<old_counter;i++){
             facultyList.add(
                     new ItemClass(
-                            R.drawable.sample,
+                            old_image[i],
                             old_name[i],
                             old_packing[i]
                     )
@@ -187,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
                     Integer mrp = dataSnapshot.child(""+i).child("MRP").getValue(Integer.class);
                     String packing = dataSnapshot.child(""+i).child("Packing").getValue(String.class);
                     Integer quantity = dataSnapshot.child(""+i).child("Shipper Quantity").getValue(Integer.class);
+                    String url = dataSnapshot.child(""+i).child("image").getValue(String.class);
+
                     //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
 
 
@@ -195,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     new_mrp[new_counter]=mrp;
                     new_packing[new_counter]=packing;
                     new_quantity[new_counter]=quantity;
+                    new_image[new_counter]=url;
 
 
                     /*facultyList.add(
@@ -237,11 +243,14 @@ public class MainActivity extends AppCompatActivity {
                     Integer mrp = dataSnapshot.child(""+i).child("MRP").getValue(Integer.class);
                     String packing = dataSnapshot.child(""+i).child("Packing").getValue(String.class);
                     Integer quantity = dataSnapshot.child(""+i).child("Shipper Quantity").getValue(Integer.class);
+                    String url = dataSnapshot.child(""+i).child("image").getValue(String.class);
+
                     //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
                     old_name[old_counter]=name;
                     old_mrp[old_counter]=mrp;
                     old_packing[old_counter]=packing;
                     old_quantity[old_counter]=quantity;
+                    old_image[old_counter]=url;
 
                     /*facultyList.add(
                             new ItemClass(

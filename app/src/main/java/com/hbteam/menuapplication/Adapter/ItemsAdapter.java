@@ -2,20 +2,18 @@ package com.hbteam.menuapplication.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.hbteam.menuapplication.Class.ItemClass;
 import com.hbteam.menuapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +52,10 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.FacultyViewH
         ItemClass fac = facultyList.get(i);
         facultyViewHolder.textName.setText(fac.gName());
         facultyViewHolder.textDesignation.setText(fac.gPrice());
-        Glide.with(mCtx).load(fac.gImage()).into(facultyViewHolder.imageView);
-        ViewCompat.setTransitionName(facultyViewHolder.imageView,fac.gName());
+        //Glide.with(mCtx).load(fac.gImage()).into(facultyViewHolder.imageView);
+        Picasso.with(mCtx)
+                .load(fac.gImage())
+                .resize(50,50).into(facultyViewHolder.imageView);
     }
 
     @Override

@@ -2,9 +2,9 @@ package com.hbteam.menuapplication.Class;
 
 public class ItemClass {
     public String Name, Price;
-    public int Image;
+    public String Image;
 
-    public ItemClass(int image, String name, String price) {
+    public ItemClass(String image, String name, String price) {
         Name = name;
         Price = price;
         Image = image;
@@ -26,11 +26,11 @@ public class ItemClass {
         Price = price;
     }
 
-    public int gImage() {
+    public String gImage() {
         return Image;
     }
 
-    public void sImage(int image) {
+    public void sImage(String image) {
         Image = image;
     }
 }
