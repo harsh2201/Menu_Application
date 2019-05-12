@@ -58,6 +58,9 @@ public class DrugInfo extends AppCompatActivity {
         });
 
         Bundle extras = getIntent().getExtras();
+
+        setTitle(extras.getString("name"));
+
         String imagename = extras.getString("image");
         Toast.makeText(this, "" + imagename, Toast.LENGTH_SHORT).show();
 
