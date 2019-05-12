@@ -2,6 +2,7 @@ package com.hbteam.menuapplication.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -30,6 +31,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -76,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
     int new_counter=0;
     int old_counter=0;
+
+
+    //Static array for maintaining Image counter
+    static String my_image[]=new String[500];
+    int total_counter=0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.aboutus:
                 Intent i = new Intent(MainActivity.this,About_Us.class);
                 startActivity(i);
+
+            case R.id.locate:
+                String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 23.6182861, 72.9610794);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,6 +1,7 @@
 package com.hbteam.menuapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,8 +55,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.FacultyViewH
         facultyViewHolder.textDesignation.setText(fac.gPrice());
         //Glide.with(mCtx).load(fac.gImage()).into(facultyViewHolder.imageView);
         Picasso.with(mCtx)
-                .load(fac.gImage())
-                .resize(50,50).into(facultyViewHolder.imageView);
+                .load(fac.gImage()).into(facultyViewHolder.imageView);
     }
 
     @Override
@@ -68,6 +68,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.FacultyViewH
         ImageView imageView;
         TextView textName;
         TextView textDesignation;
+        boolean isImageFitToScreen;
 
         public FacultyViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -83,6 +84,22 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.FacultyViewH
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            ItemClass fac = facultyList.get(position);
+                            String url=fac.gImage();
+
+
+
                         }
                     }
                 }

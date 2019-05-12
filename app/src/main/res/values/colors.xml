@@ -9,4 +9,6 @@
     <color name="transparentBlack">#ff000000</color>
     <color name="green">#03a10b</color>
 
+    <color name="black_overlay">#66000000</color>
+
 </resources>
