@@ -19,8 +19,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.google.firebase:firebase-core:11.0.4'
     implementation 'com.google.firebase:firebase-database:11.0.4'
@@ -40,20 +41,16 @@ dependencies {
     //easing animations
     implementation 'com.daimajia.easing:library:2.1@aar'
     //AutoSLider
-
     //CirclePageIndiacator
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
-
     //Layout
     compile 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
-
     //FullScreen
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
     compile 'com.github.bumptech.glide:glide:4.2.0'
     compile 'com.android.support:palette-v7:26.1.0'
-
-
+    implementation 'com.android.support:support-annotations:28.0.0'
 }
 
 

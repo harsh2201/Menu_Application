@@ -26,6 +26,7 @@ import com.hbteam.menuapplication.Adapter.ItemsAdapter;
 import com.hbteam.menuapplication.Class.ImageModel;
 import com.hbteam.menuapplication.Class.ItemClass;
 import com.hbteam.menuapplication.Class.SlidingImage_Adapter;
+import com.hbteam.menuapplication.DrugInfo;
 import com.hbteam.menuapplication.R;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -188,7 +189,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 facultyList=adapter.currentList();
-                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, DrugInfo.class);
+                intent.putExtra("name", facultyList.get(position).gName());
+                intent.putExtra("image", facultyList.get(position).gImage());
+
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gImage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
