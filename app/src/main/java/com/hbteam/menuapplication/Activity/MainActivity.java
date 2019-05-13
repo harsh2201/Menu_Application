@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.OvershootInterpolator;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public ItemsAdapter adapter;
     List<ItemClass> facultyList;
     public Intent intent;
-    public android.support.v7.widget.SearchView searchview;
+    public SearchView searchView;
 
    //Auto SLider
     private ArrayList<ImageModel> imageModelArrayList;
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //SearchView Initialized
+        searchView = findViewById(R.id.searchView);
+        search(searchView);
 
 
         //Auto Slider
@@ -149,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                             new_image[i],
                             new_name[i],
                             new_packing[i]
-
                     )
             );
         }
@@ -170,23 +174,40 @@ public class MainActivity extends AppCompatActivity {
         adapter=new ItemsAdapter(this,facultyList);
 
 //        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(adapter);
-        AlphaInAnimationAdapter alphaAdapter2 = new AlphaInAnimationAdapter(adapter);
-        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(alphaAdapter2);
-        alphaAdapter.setDuration(1500);
-        alphaAdapter.setInterpolator(new OvershootInterpolator());
-        alphaAdapter.setFirstOnly(false);
-        recyclerView.setAdapter(alphaAdapter);
-//        recyclerView.setAdapter(adapter);
+//        AlphaInAnimationAdapter alphaAdapter2 = new AlphaInAnimationAdapter(adapter);
+//        ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(alphaAdapter2);
+//        alphaAdapter.setDuration(1500);
+//        alphaAdapter.setInterpolator(new OvershootInterpolator());
+//        alphaAdapter.setFirstOnly(false);
+//        recyclerView.setAdapter(alphaAdapter);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutAnimation(controller);
         recyclerView.scheduleLayoutAnimation();
         onClickList();
 
     }
 
-   
+    private void search(SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                final ItemsAdapter adapt=(ItemsAdapter) recyclerView.getAdapter();
+                assert adapt != null;
+                adapt.getFilter().filter(newText);
+                onClickList();
+                return true;
+            }
+        });
+    }
+
+   //Called when click is encountered on the cards
     private void onClickList(){
-//        final ItemsAdapter adaptNew=(ItemsAdapter)recyclerView.getAdapter();
-//        assert adaptNew != null;
         adapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -196,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("image", facultyList.get(position).gImage());
 
                 startActivity(intent);
-                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gImage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gImage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -215,7 +236,6 @@ public class MainActivity extends AppCompatActivity {
                     String url = dataSnapshot.child(""+i).child("image").getValue(String.class);
 
                     //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
-
 
 
                     new_name[new_counter]=name;

@@ -62,7 +62,7 @@ public class DrugInfo extends AppCompatActivity {
         setTitle(extras.getString("name"));
 
         String imagename = extras.getString("image");
-        Toast.makeText(this, "" + imagename, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "" + imagename, Toast.LENGTH_SHORT).show();
 
         imageView = (ImageView) findViewById(R.id.expandedImage);
         Picasso.with(DrugInfo.this).load(imagename).into(imageView);
