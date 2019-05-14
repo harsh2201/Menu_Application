@@ -25,6 +25,7 @@
             android:name=".Activity.About_Us"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.PhotoFullPopupWindow" />
+        <activity android:name=".Activity.Fullscreen"></activity>
     </application>
 
 </manifest>

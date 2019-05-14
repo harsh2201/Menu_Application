@@ -1,5 +1,6 @@
 package com.hbteam.menuapplication;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hbteam.menuapplication.Activity.Fullscreen;
 import com.squareup.picasso.Picasso;
 
 public class DrugInfo extends AppCompatActivity {
@@ -26,7 +28,6 @@ public class DrugInfo extends AppCompatActivity {
         setContentView(R.layout.activity_drug_info);
         final Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.carty);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +60,7 @@ public class DrugInfo extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         setTitle(extras.getString("name"));
-
-        String imagename = extras.getString("image");
+        final String imagename = extras.getString("image");
 
         String description = extras.getString("desc");
 
@@ -76,6 +76,16 @@ public class DrugInfo extends AppCompatActivity {
         textView.setText(description);
 
         Picasso.with(DrugInfo.this).load(imagename).into(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(DrugInfo.this, Fullscreen.class);
+                i.putExtra("image",imagename);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
