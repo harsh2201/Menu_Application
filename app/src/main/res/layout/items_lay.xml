@@ -51,21 +51,6 @@
                 android:textColor="@color/transparentBlack"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textViewDesignation2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewDesignation"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="4dp"
-                android:layout_toEndOf="@+id/imageView"
-                android:paddingTop="10dp"
-                android:text="Designation"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/transparentBlack"
-                android:textSize="12sp" />
 
 
         </RelativeLayout>

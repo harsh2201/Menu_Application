@@ -1,18 +1,16 @@
 package com.hbteam.menuapplication;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -20,6 +18,7 @@ public class DrugInfo extends AppCompatActivity {
 
     private Menu menu;
     private ImageView imageView;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +28,11 @@ public class DrugInfo extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.carty);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
         });
 
@@ -62,9 +61,20 @@ public class DrugInfo extends AppCompatActivity {
         setTitle(extras.getString("name"));
 
         String imagename = extras.getString("image");
+
+        String description = extras.getString("desc");
+
 //        Toast.makeText(this, "" + imagename, Toast.LENGTH_SHORT).show();
 
         imageView = (ImageView) findViewById(R.id.expandedImage);
+        textView=(TextView)findViewById(R.id.desc);
+
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/roboto.ttf");
+
+        textView.setTypeface(custom_font);
+
+        textView.setText(description);
+
         Picasso.with(DrugInfo.this).load(imagename).into(imageView);
     }
 

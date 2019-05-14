@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     String new_name[]=new String[500];
     String new_image[]=new String[500];
     String new_packing[]=new String[500];
+    String new_desc[]=new String[500];
     Integer new_mrp[]=new Integer[500];
     Integer new_quantity[]=new Integer[500];
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     String old_name[]=new String[500];
     String old_image[]=new String[500];
     String old_packing[]=new String[500];
+    String old_desc[]=new String[500];
     Integer old_mrp[]=new Integer[500];
     Integer old_quantity[]=new Integer[500];
 
@@ -153,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
                     new ItemClass(
                             new_image[i],
                             new_name[i],
-                            new_packing[i]
+                            new_packing[i],
+                            new_desc[i]
                     )
             );
         }
@@ -163,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
                     new ItemClass(
                             old_image[i],
                             old_name[i],
-                            old_packing[i]
+                            old_packing[i],
+                            old_desc[i]
                     )
             );
         }
@@ -215,11 +219,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DrugInfo.class);
                 intent.putExtra("name", facultyList.get(position).gName());
                 intent.putExtra("image", facultyList.get(position).gImage());
+                intent.putExtra("desc", facultyList.get(position).gDesc());
 
                 startActivity(intent);
 //                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gImage(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     public void get_newproducts(Context context){
@@ -234,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                     String packing = dataSnapshot.child(""+i).child("Packing").getValue(String.class);
                     Integer quantity = dataSnapshot.child(""+i).child("Shipper Quantity").getValue(Integer.class);
                     String url = dataSnapshot.child(""+i).child("image").getValue(String.class);
+                    String desc = dataSnapshot.child(""+i).child("description").getValue(String.class);
 
                     //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
 
@@ -243,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
                     new_packing[new_counter]=packing;
                     new_quantity[new_counter]=quantity;
                     new_image[new_counter]=url;
+                    new_desc[new_counter]=desc;
 
 
                     /*facultyList.add(
@@ -286,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
                     String packing = dataSnapshot.child(""+i).child("Packing").getValue(String.class);
                     Integer quantity = dataSnapshot.child(""+i).child("Shipper Quantity").getValue(Integer.class);
                     String url = dataSnapshot.child(""+i).child("image").getValue(String.class);
+                    String desc = dataSnapshot.child(""+i).child("description").getValue(String.class);
 
                     //Toast.makeText(MainActivity.this,""+name,Toast.LENGTH_SHORT).show();
                     old_name[old_counter]=name;
@@ -293,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
                     old_packing[old_counter]=packing;
                     old_quantity[old_counter]=quantity;
                     old_image[old_counter]=url;
+                    old_desc[old_counter]=desc;
 
                     /*facultyList.add(
                             new ItemClass(

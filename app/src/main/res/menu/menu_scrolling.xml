@@ -13,6 +13,6 @@
         android:orderInCategory="200"
         android:title="Info"
         app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_dialog_info"/>
+        android:icon="@drawable/carty"/>
 
 </menu>
