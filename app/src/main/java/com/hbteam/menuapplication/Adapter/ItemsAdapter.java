@@ -12,7 +12,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hbteam.menuapplication.Activity.MainActivity;
+import com.hbteam.menuapplication.Activity.Fullscreen;
 import com.hbteam.menuapplication.Class.ItemClass;
 import com.hbteam.menuapplication.DrugInfo;
 import com.hbteam.menuapplication.R;
@@ -97,12 +97,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.FacultyViewH
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            Intent intent = new Intent(mCtx, DrugInfo.class);
+                          /*  Intent intent = new Intent(mCtx, DrugInfo.class);
                             intent.putExtra("name", facultyList.get(position).gName());
                             intent.putExtra("image", facultyList.get(position).gImage());
                             intent.putExtra("desc", facultyList.get(position).gDesc());
 
-                            mCtx.startActivity(intent);
+                            mCtx.startActivity(intent);*/
+
+                            Intent i = new Intent(mCtx, Fullscreen.class);
+                            i.putExtra("image",facultyList.get(position).gImage());
+                            mCtx.startActivity(i);
 
 
                         }

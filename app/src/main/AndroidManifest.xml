@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hbteam.menuapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/fidulis"
@@ -13,7 +15,7 @@
             android:name=".DrugInfo"
             android:label="Drug Info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +27,9 @@
             android:name=".Activity.About_Us"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.PhotoFullPopupWindow" />
-        <activity android:name=".Activity.Fullscreen"></activity>
+        <activity android:name=".Activity.Fullscreen" />
+        <activity android:name=".Activity.Locateus" />
+        <activity android:name=".Activity.MainActivity"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#148702</item>
         <item name="colorPrimaryDark">#dddddd</item>
-        <item name="colorAccent">#ffffff</item>
+        <item name="colorAccent">#0e0e0e</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/white</item>

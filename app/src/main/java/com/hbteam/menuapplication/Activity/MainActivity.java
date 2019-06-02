@@ -1,11 +1,14 @@
 package com.hbteam.menuapplication.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.view.animation.OvershootInterpolator;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,11 +38,9 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
-
 public class MainActivity extends AppCompatActivity {
 
+    int back_counter = 0;
     public RecyclerView recyclerView;
     public ItemsAdapter adapter;
     List<ItemClass> facultyList;
@@ -92,13 +91,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
         //SearchView Initialized
         searchView = findViewById(R.id.searchView);
         search(searchView);
 
-
+      
         //Auto Slider
         imageModelArrayList = new ArrayList<>();
         imageModelArrayList = populateList();
@@ -141,8 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.locate:
-                String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 23.6182861, 72.9610794);
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                Intent intent = new Intent(MainActivity.this,Locateus.class);
                 startActivity(intent);
                 break;
         }
@@ -406,4 +405,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        MainActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent i2 =new Intent(MainActivity.this,MainActivity.class);
+                        startActivity(i2);
+                        finish();
+                    }
+                })
+                .show();
+    }
 }
