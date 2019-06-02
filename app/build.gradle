@@ -56,5 +56,11 @@ dependencies {
     //Circular Image View
 
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Buttons
+    implementation  'com.github.jd-alexander:android-flat-button:v1.1'
+
+    //Dialogue
+    implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.2'
 }
 apply plugin: 'com.google.gms.google-services'

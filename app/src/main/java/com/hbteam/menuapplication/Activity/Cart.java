@@ -1,5 +1,6 @@
 package com.hbteam.menuapplication.Activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,6 +21,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import info.hoang8f.widget.FButton;
 
 public class Cart extends AppCompatActivity {
 
@@ -53,6 +56,7 @@ public class Cart extends AppCompatActivity {
         Picasso.with(Cart.this).load(imagename).into(imageView);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        Context context = this;
         mAdapter = new cartadapter(movieList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -124,7 +128,6 @@ public class Cart extends AppCompatActivity {
     public  void add_content()
     {
 
-        Toast.makeText(Cart.this,""+new_counter,Toast.LENGTH_SHORT).show();
 
         for(int i=0;i<new_counter;i++)
         {
