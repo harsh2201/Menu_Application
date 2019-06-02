@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("name", facultyList.get(position).gName());
                 intent.putExtra("image", facultyList.get(position).gImage());
                 intent.putExtra("desc", facultyList.get(position).gDesc());
+                intent.putExtra("pos", position);
 
                 startActivity(intent);
 //                Toast.makeText(MainActivity.this, ""+facultyList.get(position).gImage(), Toast.LENGTH_SHORT).show();

@@ -15,7 +15,7 @@
             android:name=".DrugInfo"
             android:label="Drug Info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.Login">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,9 @@
         <activity android:name=".Activity.PhotoFullPopupWindow" />
         <activity android:name=".Activity.Fullscreen" />
         <activity android:name=".Activity.Locateus" />
-        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.Login" />
+        <activity android:name=".Activity.Cart" />
+        <activity android:name=".Activity.Checkout"></activity>
     </application>
 
 </manifest>

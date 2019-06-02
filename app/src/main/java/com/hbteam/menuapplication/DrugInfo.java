@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hbteam.menuapplication.Activity.Cart;
 import com.hbteam.menuapplication.Activity.Fullscreen;
 import com.squareup.picasso.Picasso;
 
@@ -21,6 +22,8 @@ public class DrugInfo extends AppCompatActivity {
     private Menu menu;
     private ImageView imageView;
     private TextView textView;
+    String imagename;
+    Integer position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class DrugInfo extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(DrugInfo.this , Cart.class);
+                i.putExtra("imagename",imagename);
+                i.putExtra("pos",position);
+                startActivity(i);
 
             }
         });
@@ -60,7 +67,8 @@ public class DrugInfo extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         setTitle(extras.getString("name"));
-        final String imagename = extras.getString("image");
+        imagename = extras.getString("image");
+        position = extras.getInt("pos");
 
         String description = extras.getString("desc");
 
@@ -69,7 +77,7 @@ public class DrugInfo extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.expandedImage);
         textView=(TextView)findViewById(R.id.desc);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/roboto.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "font/calibri.ttf");
 
         textView.setTypeface(custom_font);
 
@@ -108,6 +116,11 @@ public class DrugInfo extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_info) {
+            Intent i = new Intent(DrugInfo.this , Cart.class);
+            i.putExtra("imagename",imagename);
+
+            startActivity(i);
+
             return true;
         }
 
